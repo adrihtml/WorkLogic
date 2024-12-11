@@ -1,0 +1,32 @@
+#Para exibir uma imagem na tela
+print("Desenvolvido por Adriana Bill Campeão")
+
+# Definimos os valores.Sendo o Base um valor aleatório, pois o mesmo vai indicar esse valor durante a execução do programa.
+valorBase = 100
+valorFinal = 0
+
+# Aqui colocamos então a função float para fazer o calculo dos nossos if, elif e else
+valorBase = float(input("Valor Base do Plano: "))
+
+# Indicamos o int para inputar o valor dado pelo usuário
+idade = int(input("Digite sua Idade: "))
+
+# Então utilizamos e verificamos as faixas etárias para fazer o cálculo do plano
+if 0 <= idade < 19:
+    valorFinal = valorBase * (100 / 100)
+
+elif 19 <= idade < 29:
+    valorFinal = valorBase * (150 / 100)
+elif 29 <= idade < 39:
+    valorFinal = valorBase * (225 / 100)
+elif 39 <= idade < 49:
+    valorFinal = valorBase * (240 / 100)
+elif 49 <= idade < 59:
+    valorFinal = valorBase * (350 / 100)
+else:  # idade >= 59
+    valorFinal = valorBase * (600 / 100)
+
+# Por fim, exibimos esse calculo na tela de acordo com os dados enviados pelo usuário
+
+print (f"Valor do plano: R${valorFinal:.2f}")
+

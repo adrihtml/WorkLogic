@@ -1,0 +1,113 @@
+# Desenvolvedora
+print("Bem-vindos à Lista de Contatos da Adriana Bill Campeão")
+
+lista_contatos = []
+
+# ID da Adriana
+id_global = 4680148
+
+def cadastrar_contato():
+    """Função para cadastrar um novo contato."""
+    global id_global
+    print("")
+    nome = input("Informe o nome do contato: ")
+    atividade = input("Informe a atividade do contato (Ex: Estudante, Professor): ")
+    telefone = input("Informe o telefone do contato: ")
+    ID = int(input("Informe o ID: ")) # usa o id como número inteiro
+
+    print("")
+
+    contato = {
+        'id': ID,
+        'nome': nome,
+        'atividade': atividade,
+        'telefone': telefone
+    }
+
+    lista_contatos.append(contato.copy())
+    print(f"Contato {nome} cadastrado com sucesso!")
+
+def consultar_contatos():
+    """Função para consultar os contatos cadastrados."""
+    while True:
+        print("------------------------------------------------------------------------------------------")
+        print("\n----------------------------- CONTATOS POR CONSULTA --------------------------------------")
+        print("Escolha a opção desejada:")
+        print("1. Consultar Todos os Contatos")
+        print("2. Consultar Contato por ID")
+        print("3. Consultar Contato(s) por Atividade")
+        print("4. Voltar ao Menu Principal")
+        opcao = input("")
+        print("------------------------------------------------------------------------------------------")
+
+        if opcao == '1':
+            if lista_contatos:
+                print("\n------------------------------ CONTATOS CADASTRADOS ------------------------------------")
+                for contato in lista_contatos:
+                    print(f"ID: {contato['id']} \nNOME: {contato['nome']} \nATIVIDADE: {contato['atividade']} \nTELEFONE: {contato['telefone']}\n")
+            else:
+                print("------------------------------ Nenhum contato cadastrado -----------------------------")
+
+        elif opcao == '2':
+            id_consulta = int(input("Informe o ID do contato: "))
+            contato_encontrado = next((c for c in lista_contatos if c['id'] == id_consulta), None)
+            if contato_encontrado:
+                print(f"ID: {contato_encontrado['id']} \nNOME: {contato_encontrado['nome']} \nATIVIDADE: {contato_encontrado['atividade']} \nTELEFONE: {contato_encontrado['telefone']}")
+            else:
+                print("----------------------------- CONTATO NÃO ENCONTRADO -------------------------------------")
+
+        elif opcao == '3':
+            atividade_consulta = input("Informe a atividade (Ex: Estudante, Professor): ")
+            contatos_encontrados = [c for c in lista_contatos if c['atividade'].lower() == atividade_consulta.lower()]
+            if contatos_encontrados:
+                print(f"Contatos com a atividade '{atividade_consulta}':")
+                for contato in contatos_encontrados:
+                    print(f"ID: {contato['id']} \nNOME: {contato['nome']} \nTELEFONE: {contato['telefone']}\n")
+            else:
+                print("------------------ NENHUM CONTATO EXISTENTE COM A ATIVIDADE ------------------")
+
+        elif opcao == '4':
+            print("")
+            return
+        else:
+            print("-------------------------- Opção inválida. Tente novamente --------------------------")
+
+def remover_contato():
+    """Função para remover um contato pelo ID."""
+    id_remover = int(input("Informe o ID do contato a ser removido: "))
+    print("")
+    contato_removido = next((c for c in lista_contatos if c['id'] == id_remover), None)
+
+    if contato_removido:
+        lista_contatos.remove(contato_removido)
+        print(f"Contato com ID {id_remover} removido com sucesso!")
+    else:
+        print("ID inválido. Tente novamente.")
+
+# Primeira tela
+while True:
+    print("------------------------------------------------------------------------------------------")
+    print("\n------------------------------- MENU PRINCIPAL -------------------------------------------")
+    print("Escolha a opção desejada:")
+    print("1. Cadastrar Novo Contato")
+    print("2. Consultar Contatos")
+    print("3. Remover Contato")
+    print("4. Encerrar Programa")
+    opcao_menu = input("")
+    print("------------------------------------------------------------------------------------------")
+
+    if opcao_menu == '1':
+        cadastrar_contato()
+
+    elif opcao_menu == '2':
+        consultar_contatos()
+
+    elif opcao_menu == '3':
+        remover_contato()
+
+    elif opcao_menu == '4':
+        print("------------------------------ Programa encerrado ---------------------------------------")
+        break
+
+    else:
+        print("-------------------------- Opção inválida. Tente novamente --------------------------")

@@ -1,0 +1,56 @@
+# Desevolvido por Adriana Bill Campeão
+print("Bem-vindos à Pizzaria da Adriana Bill Campeão!🍕")
+
+# Opções de tamanhos e sabores
+print("-----------------------------------------------")
+print("                   MENU                        ")
+print("-----------------------------------------------")
+print("| Tamanho | Pizza Salgada (PS) | Pizza Doce (PD) |")
+print("|   P     |      R$ 30.00      |     R$ 34.00    |")
+print("|   M     |      R$ 45.00      |     R$ 48.00    |")
+print("|   G     |      R$ 60.00      |     R$ 66.00    |")
+print("-----------------------------------------------")
+print("Entre com o sabor desejado (PS/PD): ")
+
+# Calcula o quanto a pessoa precisa pagar pelo pedido
+valor_total = 0
+
+while True:
+    sabor = input("Digite o sabor da pizza (PS/PD): ")
+
+    if sabor not in ["PS", "PD"]:
+        print("Sabor inválido. Tente novamente.")
+        continue
+
+    tamanho = input("Digite o tamanho da pizza (P/M/G): ").strip().upper()
+
+    if tamanho not in ["P", "M", "G"]:
+        print("Tamanho inválido. Tente novamente.")
+        continue
+
+    # Definição dos preços
+    if tamanho == "P":
+        if sabor == "PS":
+            preco = 30
+        else:
+            preco = 34
+    elif tamanho == "M":
+        if sabor == "PS":
+            preco = 45
+        else:
+            preco = 48
+    elif tamanho == "G":
+        if sabor == "PS":
+            preco = 60
+        else:
+            preco = 66
+
+    valor_total += preco
+    print(f"Você pediu uma pizza! O sabor é {sabor} e o tamanho é {tamanho}. Fica no total: R${preco:.2f}")
+
+    # Pergunta se o usuário deseja pedir mais
+    pedido_extra = input("Deseja adiconar algo mais? (SIM/NÃO): ")
+    if pedido_extra != "SIM":
+        break  # Encerra se o usuário não quiser pedir mais
+
+print(f"Valor total do seu pedido: R${valor_total:.2f}")

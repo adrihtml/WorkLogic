@@ -1,0 +1,70 @@
+# Desenvolvido por Adriana Bill Campeão
+print("Bem-vindos à Madeireira do Lenhadora Adriana Bill Campeão")
+
+def escolha_tipo():
+    while True:
+        tipo = input("Escolha o tipo de madeira:\nPIN - Tora de Pinho \nPER - Tora de Peroba \nMOG - Tora de Mogno \nIPE - Tora de Ipê \nIMB - Tora de Imbuia: ").strip().upper()
+        if tipo == "PIN":
+            return 150.40
+        elif tipo == "PER":
+            return 170.20
+        elif tipo == "MOG":
+            return 190.90
+        elif tipo == "IPE":
+            return 210.10
+        elif tipo == "IMB":
+            return 220.70
+        else:
+            print("Tipo de madeira inválido. Por favor, escolha entre PIN, PER, MOG, IPE, IMB.")
+
+def qtd_toras():
+    while True:
+        try:
+            qtd = float(input("Informe a quantidade de toras em metros cúbicos até 2000 m³: "))
+            if qtd <= 0:
+                print("Quantidade inválida. Digite um valor maior que 0.")
+            elif qtd < 100:
+                return qtd, 0  # Sem desconto
+            elif qtd < 500:
+                return qtd, 0.04  # Desconto de 4%
+            elif qtd < 1000:
+                return qtd, 0.09  # Desconto de 9%
+            elif qtd <= 2000:
+                return qtd, 0.16  # Desconto de 16%
+            else:
+                print("Quantidade ultrapassa o limite de 2000 m³. Tente novamente.")
+        except ValueError:
+            print("Por favor, insira um valor numérico válido.")
+
+
+def transporte():
+    while True:
+        try:
+            opcao = int(input("Escolha o transporte \n1 - Rodoviário R$1000,00 \n2 - Ferroviário R$2000,00 \n3 - Hidroviário R$2500,00: "))
+            if opcao == 1:
+                return 1000
+            elif opcao == 2:
+                return 2000
+            elif opcao == 3:
+                return 2500
+            else:
+                print("Opção inválida. Escolha entre 1, 2 ou 3.")
+        except ValueError:
+            print("Por favor, insira um valor numérico (1, 2 ou 3).")
+
+if __name__ == "__main__":
+        valor_madeira = escolha_tipo()
+
+        qtd, desconto = qtd_toras()
+
+    valor_transporte = transporte()
+
+       total = ((valor_madeira * qtd) * (1 - desconto)) + valor_transporte
+
+
+    print(f"\nResumo do Pedido:")
+    print(f"Quantidade de toras: {qtd} m\u00B3")
+    print(f"Valor por m³: R$ {valor_madeira:.2f}")
+    print(f"Desconto: {desconto * 100}%")
+    print(f"Valor do transporte: R$ {valor_transporte:.2f}")
+    print(f"Total a pagar: R$ {total:.2f}")
